@@ -16,24 +16,3 @@ export const CarbonButton = ({ kind, size, label, ...props }) => {
     </Button>
   )
 };
-
-Button.propTypes = {
-  /**
-   * Is this the principal call to action on the page?
-   */
-  primary: PropTypes.oneOf(['danger', 'primary', 'secondary']),
-  
-  /**
-   * How large should the button be?
-   */
-  size: PropTypes.oneOf(['sm', 'md', 'lg']),
-  /**
-   * Button contents
-   */
-  label: PropTypes.string.isRequired,
-};
-
-Button.defaultProps = {
-  kind: "primary",
-  size: 'sm',
-};
