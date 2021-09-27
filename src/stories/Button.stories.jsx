@@ -28,10 +28,3 @@ export const Carbon = TemplateCarbonButton.bind({});
 Carbon.args = {
   label: "Carbon Button"
 }
-
-// const Template = (args) => <CarbonButton {...args} />;
-
-// export const Primary = Template.bind({});
-// Primary.args = {
-//   label: 'Button',
-// };
