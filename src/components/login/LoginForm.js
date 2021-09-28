@@ -2,15 +2,18 @@ import React from 'react'
 import { Button, FormGroup, TextInput } from 'carbon-components-react'
 import styled from 'styled-components'
 
+const LoginFormContainer = styled.div`
+    width: 400px;
+`
+
 const Login = styled(FormGroup)`
-    max-width: 400px;
     border: 1px solid red;
     padding: 20px;
 `
 
 export default function LoginForm() {
     return (
-        <div>
+        <LoginFormContainer>
             <Login legendText="Login">
                 <TextInput
                     id="username"
@@ -23,6 +26,6 @@ export default function LoginForm() {
                 />
             </Login>
             <Button kind="danger">Login</Button>
-        </div>
+        </LoginFormContainer>
     )
 }
