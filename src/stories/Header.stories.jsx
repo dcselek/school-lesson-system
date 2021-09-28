@@ -3,10 +3,10 @@ import React from 'react';
 import Header from '../components/header/Header';
 
 export default {
-    title : "Components/Header",
+    title: "Components/Header",
     argTypes: {
-        login : {
-            control: {type: "boolean"}
+        login: {
+            control: { type: "boolean" }
         }
     }
 };
