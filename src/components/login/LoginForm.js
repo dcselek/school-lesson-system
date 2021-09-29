@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button, FormGroup, TextInput } from 'carbon-components-react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 const LoginFormContainer = styled.div`
     width: 400px;
@@ -9,6 +10,9 @@ const LoginFormContainer = styled.div`
 const Login = styled(FormGroup)`
     border: 1px solid red;
     padding: 20px;
+`
+const LoginButton = styled(Button)`
+    text-decoration: none;
 `
 
 export default function LoginForm() {
@@ -25,7 +29,7 @@ export default function LoginForm() {
                     type="password"
                 />
             </Login>
-            <Button kind="danger">Login</Button>
+            <Link to="/main" ><LoginButton kind="danger">Login</LoginButton></Link>
         </LoginFormContainer>
     )
 }
