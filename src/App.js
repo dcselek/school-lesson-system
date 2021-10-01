@@ -1,21 +1,22 @@
 import './App.css';
-import { Switch, Route, BrowserRouter as Router } from 'react-router-dom'
+import { Routes, Route, BrowserRouter as Router } from 'react-router-dom'
 import LoginPage from './pages/loginPage';
 import MainPage from './pages/MainPage';
 import { AuthProvider } from './context/AuthContext';
+import ProtectedRoute from './components/login/ProtectedRoute'
 
 function App() {
   return (
-    <AuthProvider>
-      <Router>
+    <Router>
+      <AuthProvider>
         <div className="App">
-          <Switch>
-            <Route exact path="/" component={LoginPage} />
-            <Route exact path="/main" component={MainPage} />
-          </Switch>
+          <Routes>
+            <Route path="/" element={<LoginPage />} />
+            <ProtectedRoute path="/main" element={<MainPage />} />
+          </Routes>
         </div>
-      </Router>
-    </AuthProvider>
+      </AuthProvider>
+    </Router>
   );
 }
 

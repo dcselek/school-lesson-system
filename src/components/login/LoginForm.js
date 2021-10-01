@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import useAuth from '../../context/AuthContext'
 import { Button, FormGroup, TextInput } from 'carbon-components-react'
 import styled from 'styled-components'
@@ -18,13 +18,12 @@ const LoginButton = styled(Button)`
 
 export default function LoginForm() {
 
-    let navigate = useNavigate();
+    const navigate = useNavigate();
     const { login } = useAuth();
-    const {state} = useLocation();
 
     const handleLogin = () => {
         login().then(() => {
-            navigate(state.path || "/main");
+            navigate("/main");
         });
     };
 
@@ -41,7 +40,7 @@ export default function LoginForm() {
                     type="password"
                 />
             </Login>
-            <LoginButton kind="danger" onClick = {handleLogin}>Login</LoginButton>
+            <LoginButton kind="danger" onClick={handleLogin}>Login</LoginButton>
         </LoginFormContainer>
     )
 }

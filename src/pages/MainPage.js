@@ -6,7 +6,7 @@ import useAuth from '../context/AuthContext'
 export default function MainPage() {
 
     const { authed, logout } = useAuth();
-    let navigate = useNavigate();
+    const navigate = useNavigate();
 
     const handleLogout = () => {
         logout();
