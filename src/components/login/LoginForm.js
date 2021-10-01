@@ -1,7 +1,8 @@
 import React from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
+import useAuth from '../../context/AuthContext'
 import { Button, FormGroup, TextInput } from 'carbon-components-react'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
 
 const LoginFormContainer = styled.div`
     width: 400px;
@@ -16,6 +17,17 @@ const LoginButton = styled(Button)`
 `
 
 export default function LoginForm() {
+
+    let navigate = useNavigate();
+    const { login } = useAuth();
+    const {state} = useLocation();
+
+    const handleLogin = () => {
+        login().then(() => {
+            navigate(state.path || "/main");
+        });
+    };
+
     return (
         <LoginFormContainer>
             <Login legendText="Login">
@@ -29,7 +41,7 @@ export default function LoginForm() {
                     type="password"
                 />
             </Login>
-            <Link to="/main" ><LoginButton kind="danger">Login</LoginButton></Link>
+            <LoginButton kind="danger" onClick = {handleLogin}>Login</LoginButton>
         </LoginFormContainer>
     )
 }
