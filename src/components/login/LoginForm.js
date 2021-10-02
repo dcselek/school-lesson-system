@@ -17,18 +17,15 @@ const LoginButton = styled(Button)`
 `
 
 export default function LoginForm() {
-
-    // const [UserInfo, setUserInfo] = useState({ username: "", password: "" })
-
     const navigate = useNavigate();
     const { login, UserInfoAuth, setUserInfoAuth } = useAuth();
 
-    function handleLogin () {
+    function handleLogin() {
         login().then(() => {
             navigate("/main");
         })
     };
-        
+
     return (
         <LoginFormContainer>
             <Login legendText="Login">
