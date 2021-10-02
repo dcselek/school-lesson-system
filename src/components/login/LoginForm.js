@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import useAuth from '../../context/AuthContext'
 import { Button, FormGroup, TextInput } from 'carbon-components-react'
@@ -18,26 +18,30 @@ const LoginButton = styled(Button)`
 
 export default function LoginForm() {
 
-    const navigate = useNavigate();
-    const { login } = useAuth();
+    // const [UserInfo, setUserInfo] = useState({ username: "", password: "" })
 
-    const handleLogin = () => {
+    const navigate = useNavigate();
+    const { login, UserInfoAuth, setUserInfoAuth } = useAuth();
+
+    function handleLogin () {
         login().then(() => {
             navigate("/main");
-        });
+        })
     };
-
+        
     return (
         <LoginFormContainer>
             <Login legendText="Login">
                 <TextInput
                     id="username"
                     labelText="Username"
+                    onChange={e => setUserInfoAuth({ ...UserInfoAuth, username: e.target.value })}
                 />
                 <TextInput
                     id="password"
                     labelText="Password"
                     type="password"
+                    onChange={e => setUserInfoAuth({ ...UserInfoAuth, password: e.target.value })}
                 />
             </Login>
             <LoginButton kind="danger" onClick={handleLogin}>Login</LoginButton>

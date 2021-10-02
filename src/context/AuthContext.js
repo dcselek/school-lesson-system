@@ -4,14 +4,28 @@ const authContext = React.createContext();
 
 function useAuth() {
     const [authed, setAuthed] = useState(false);
+    const [UserInfoAuth, setUserInfoAuth] = useState(null);
+
 
     return {
+        UserInfoAuth,
+        setUserInfoAuth,
         authed,
-        login() {
-            return new Promise((res) => {
-                setAuthed(true);
-                res();
+        async login() {
+
+            const response = await fetch("/login", {
+                method: "POST", headers: {
+                    'Content-Type': 'application/json'
+                    // 'Content-Type': 'application/x-www-form-urlencoded',
+                }, body: JSON.stringify(UserInfoAuth)
             });
+
+            
+            const data = await response.json();
+
+            setAuthed(true);
+            localStorage.setItem("user", JSON.stringify(data));
+
         },
         logout() {
             return new Promise((res) => {
@@ -22,10 +36,10 @@ function useAuth() {
     }
 }
 
-export function AuthProvider({children}) {
+export function AuthProvider({ children }) {
     const auth = useAuth();
 
-    return(
+    return (
         <authContext.Provider value={auth}>
             {children}
         </authContext.Provider>
