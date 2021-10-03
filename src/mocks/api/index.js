@@ -13,11 +13,16 @@ export const handlers = [
     )
   }),
   rest.get("/me", (req, res, ctx) => {
+    if (req.headers.get('Authorization').length > 0) {
+      return res(
+        ctx.json({
+          username: "can",
+          credit: "170",
+        })
+      )
+    }
     return res(
-      ctx.json({
-        username: "can",
-        credit: "170",
-      })
+      ctx.status(403)
     )
   })
 ]
