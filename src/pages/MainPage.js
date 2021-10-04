@@ -1,6 +1,6 @@
-import { Button } from 'carbon-components-react'
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
+import MainButton from '../components/buttons/MainButton';
 import useAuth from '../context/AuthContext'
 
 export default function MainPage() {
@@ -16,7 +16,7 @@ export default function MainPage() {
     return (
         <div>
             <h1>Main Page</h1>
-            <Button onClick={handleLogout}>Back To</Button>
+            <MainButton onClick={handleLogout} kind="secondary" label="Logout" />
         </div>
     )
 }
