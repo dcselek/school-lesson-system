@@ -18,12 +18,11 @@ const LoginButton = styled(Button)`
 
 export default function LoginForm() {
     const navigate = useNavigate();
-    const { login, UserInfoAuth, setUserInfoAuth } = useAuth();
+    const { login, UserInfoAuth, setUserInfoAuth, isAuth } = useAuth();
 
-    function handleLogin() {
-        login().then(() => {
-            navigate("/main");
-        })
+    async function handleLogin() {
+        await login();
+        isAuth() === true ? navigate("/main") : alert("token yok!");
     };
 
     return (

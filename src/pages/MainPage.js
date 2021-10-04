@@ -5,7 +5,7 @@ import useAuth from '../context/AuthContext'
 
 export default function MainPage() {
 
-    const { authed, logout } = useAuth();
+    const { logout } = useAuth();
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -16,7 +16,7 @@ export default function MainPage() {
     return (
         <div>
             <h1>Main Page</h1>
-            {authed && <Button onClick={handleLogout} >Back To</Button>}
+            <Button onClick={handleLogout}>Back To</Button>
         </div>
     )
 }
