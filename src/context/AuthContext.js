@@ -3,16 +3,11 @@ import React, { useState } from 'react'
 const authContext = React.createContext();
 
 function useAuth() {
-    const [authed, setAuthed] = useState(false);
     const [UserInfoAuth, setUserInfoAuth] = useState(null);
-
-
     return {
         UserInfoAuth,
         setUserInfoAuth,
-        authed,
         async login() {
-
             const response = await fetch("/login", {
                 method: "POST", headers: {
                     'Content-Type': 'application/json'
@@ -21,15 +16,17 @@ function useAuth() {
 
             const data = await response.json();
 
-            setAuthed(true);
-            localStorage.setItem("user", JSON.stringify(data));
-
+            await localStorage.setItem("user", JSON.stringify(data));
+        },
+        isAuth() {
+            if(JSON.parse(localStorage.getItem("user")).id){
+                return true;
+            }else{
+                return false;
+            }
         },
         logout() {
-            return new Promise((res) => {
-                setAuthed(false);
-                res();
-            });
+            localStorage.clear();    
         }
     }
 }
