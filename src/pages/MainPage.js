@@ -9,7 +9,6 @@ export default function MainPage() {
     const { logout } = useAuth();
     const navigate = useNavigate();
 
-
     async function handleLogout() {
 
         const response = await fetch("/me", {
@@ -25,7 +24,6 @@ export default function MainPage() {
             navigate("/");
         }
     }
-
 
     useEffect(() => {
         async function authMe() {
@@ -45,9 +43,9 @@ export default function MainPage() {
     }, [])
 
     return (
-        <div>
+        <>
             <h1>Main Page Hoşgeldin {JSON.stringify(data)}</h1>
             <MainButton onClick={handleLogout} kind="secondary" label="Fake Logout" />
-        </div>
+        </>
     )
 }
