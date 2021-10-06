@@ -3,9 +3,9 @@ import { Route, Navigate } from 'react-router-dom'
 import useAuth from '../../context/AuthContext'
 
 export default function ProtectedRoute({ element, path }) {
-    const { authed } = useAuth();
+    const { isAuth } = useAuth();
     const ele =
-        authed === true ? (
+        isAuth() === true ? (
             element
         ) : (
             <Navigate to="/" replace state={{ path }} />

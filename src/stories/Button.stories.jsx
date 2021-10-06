@@ -1,7 +1,5 @@
 import React from 'react';
-
-import { CarbonButton } from './CarbonButton';
-import StyledButton from './StyledButton';
+import MainButton from '../components/buttons/MainButton';
 
 export default {
   title: 'Components/Buttons',
@@ -17,14 +15,9 @@ export default {
   }
 };
 
-const TemplateCarbonButton = (args) => <CarbonButton {...args}/>
-const TemplateStyledButton = (args) => <StyledButton {...args} />
+const TemplateCarbonButton = (args) => <MainButton {...args}/>
 
-export const Styled = TemplateStyledButton.bind({});
-Styled.args = {
-  label: "Styled Button"
-}
 export const Carbon = TemplateCarbonButton.bind({});
 Carbon.args = {
-  label: "Carbon Button"
+  label: "Main Button"
 }

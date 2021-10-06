@@ -1,29 +1,24 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import useAuth from '../../context/AuthContext'
-import { Button, FormGroup, TextInput } from 'carbon-components-react'
+import { FormGroup, TextInput } from 'carbon-components-react'
 import styled from 'styled-components'
+import MainButton from '../buttons/MainButton'
 
 const LoginFormContainer = styled.div`
     width: 400px;
 `
-
 const Login = styled(FormGroup)`
     border: 1px solid red;
     padding: 20px;
 `
-const LoginButton = styled(Button)`
-    text-decoration: none;
-`
-
 export default function LoginForm() {
     const navigate = useNavigate();
-    const { login, UserInfoAuth, setUserInfoAuth } = useAuth();
+    const { login, UserInfoAuth, setUserInfoAuth, isAuth } = useAuth();
 
-    function handleLogin() {
-        login().then(() => {
-            navigate("/main");
-        })
+    async function handleLogin() {
+        await login();
+        isAuth() === true ? navigate("/main") : alert("token yok!");
     };
 
     return (
@@ -41,7 +36,7 @@ export default function LoginForm() {
                     onChange={e => setUserInfoAuth({ ...UserInfoAuth, password: e.target.value })}
                 />
             </Login>
-            <LoginButton kind="danger" onClick={handleLogin}>Login</LoginButton>
+            <MainButton kind="danger" onClick={handleLogin} label="Login" />
         </LoginFormContainer>
     )
 }
