@@ -1,21 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import { Grid, Row } from 'carbon-components-react';
+import React, { useEffect } from 'react'
+import GenderCharts from '../components/charts/GenderCharts';
 
 export default function MainPage() {
-
-    const [data, setData] = useState(null)
-
     useEffect(() => {
-        async function authMe() {
-            const response = await fetch("/me", {
+        function authMe() {
+            fetch("/me", {
                 method: "GET", headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'Bearer 123'
                 }
             })
-
-            const data = await response.json();
-
-            setData(data.username);
         }
 
         authMe();
@@ -23,7 +18,11 @@ export default function MainPage() {
 
     return (
         <>
-            <h1>Main Page Hoşgeldin {JSON.stringify(data)}</h1>
+        <Grid>
+            <Row>
+                <GenderCharts />
+            </Row>
+        </Grid>
         </>
     )
 }
