@@ -1,15 +1,15 @@
 import React from 'react'
-import { Route, Navigate } from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
 import useAuth from '../../context/AuthContext'
 
-export default function ProtectedRoute({ element, path }) {
+export default function ProtectedRoute({ children, ...rest }) {
     const { isAuth } = useAuth();
     const ele =
         isAuth() === true ? (
-            element
+            children
         ) : (
-            <Navigate to="/" replace state={{ path }} />
+            <Redirect to="/" />
         );
 
-    return <Route path={path} element={ele} />;
+    return <Route {...rest} children={ele} />
 }

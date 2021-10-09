@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import useAuth from '../../context/AuthContext'
 import { FormGroup, TextInput } from 'carbon-components-react'
 import styled from 'styled-components'
@@ -13,12 +13,13 @@ const Login = styled(FormGroup)`
     padding: 20px;
 `
 export default function LoginForm() {
-    const navigate = useNavigate();
+    const history = useHistory();
+    const location = useLocation();
     const { login, UserInfoAuth, setUserInfoAuth, isAuth } = useAuth();
-
+    const { from } = location.state || { from: { pathname: "/main" } }
     async function handleLogin() {
         await login();
-        isAuth() === true ? navigate("/main") : alert("token yok!");
+        isAuth() === true ? history.replace(from) : alert("token yok!");
     };
 
     return (

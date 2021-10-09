@@ -1,7 +1,7 @@
 import './App.css';
 import { Content } from 'carbon-components-react';
 import Header from './components/header/Header';
-import { Routes, Route, BrowserRouter as Router } from 'react-router-dom'
+import { Switch, Route, BrowserRouter as Router } from 'react-router-dom'
 import LoginPage from './pages/loginPage';
 import MainPage from './pages/MainPage';
 import { AuthProvider } from './context/AuthContext';
@@ -9,19 +9,17 @@ import ProtectedRoute from './components/login/ProtectedRoute'
 
 function App() {
   return (
-    <Router>
-      <AuthProvider>
-        <>
-          <Header />
-          <Content>
-            <Routes>
-              <Route path="/" element={<LoginPage />} />
-              <ProtectedRoute path="/main" element={<MainPage />} />
-            </Routes>
-          </Content>
-        </>
-      </AuthProvider>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <Header />
+        <Content>
+          <Switch>
+            <Route exact path="/" children={<LoginPage />} />
+            <ProtectedRoute path="/main" children={<MainPage />} />
+          </Switch>
+        </Content>
+      </Router>
+    </AuthProvider>
   );
 }
 

@@ -1,12 +1,12 @@
 import React from 'react'
 import { Header as HeaderBase, HeaderName, HeaderNavigation, HeaderMenuItem, HeaderContainer, HeaderGlobalBar, HeaderGlobalAction } from 'carbon-components-react'
 import useAuth from '../../context/AuthContext'
-import { useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { Logout32 } from '@carbon/icons-react';
 
 export default function Header() {
     const { logout, authed } = useAuth();
-    const navigate = useNavigate();
+    const history = useHistory();
 
     async function handleLogout() {
 
@@ -20,7 +20,7 @@ export default function Header() {
 
         if (status === 403) {
             logout();
-            navigate("/");
+            history.push("/");
         }
     }
 
