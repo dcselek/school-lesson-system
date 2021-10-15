@@ -1,6 +1,5 @@
 import React from 'react'
 import { DonutChart } from '@carbon/charts-react'
-import "@carbon/charts/styles.css"
 
 export default function GenderCharts() {
 
@@ -20,10 +19,11 @@ export default function GenderCharts() {
         "resizable": true,
         "donut": {
             "center": {
-                "label": "Genders"
+                "label": "Students"
             }
         },
-        "height": "400px"
+        "height": "400px",
+        "width": "400px"
     }
 
     return (
