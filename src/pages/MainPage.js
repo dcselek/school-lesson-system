@@ -1,6 +1,7 @@
-import { Grid, Row } from 'carbon-components-react';
+import { Column, Grid, Row } from 'carbon-components-react';
 import React, { useEffect } from 'react'
 import GenderCharts from '../components/charts/GenderCharts';
+import LessonChart from '../components/charts/LessonChart';
 
 export default function MainPage() {
     useEffect(() => {
@@ -18,11 +19,18 @@ export default function MainPage() {
 
     return (
         <>
-        <Grid>
-            <Row>
-                <GenderCharts />
-            </Row>
-        </Grid>
+            <Grid>
+                <Row>
+                    <Column></Column>
+                    <Column>
+                        <GenderCharts />
+                    </Column>
+                    <Column>
+                        <LessonChart />
+                    </Column>
+                    <Column></Column>
+                </Row>
+            </Grid>
         </>
     )
 }
