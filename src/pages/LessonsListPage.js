@@ -1,8 +1,10 @@
-import { Grid, Row } from 'carbon-components-react'
-import React from 'react'
+import { Grid, DataTableSkeleton } from 'carbon-components-react'
+import React, { useState, useEffect } from 'react'
 import LessonsTable from '../components/tables/LessonsTable';
 
 export default function LessonsListPage() {
+    const [lessons, setLessons] = useState(null);
+
     const headers = [
         {
             key: 'id',
@@ -22,41 +24,33 @@ export default function LessonsListPage() {
         }
     ];
 
-    const rows = [
-        {
-          id: '1',
-          name: 'Repo 1',
-          createdAt: 'Date',
-          updatedAt: 'Date',
-          issueCount: '123',
-          stars: '456',
-          links: 'Links',
-        },
-        {
-          id: '2',
-          name: 'Repo 2',
-          createdAt: 'Date',
-          updatedAt: 'Date',
-          issueCount: '123',
-          stars: '456',
-          links: 'Links',
-        },
-        {
-          id: '3',
-          name: 'Repo 3',
-          createdAt: 'Date',
-          updatedAt: 'Date',
-          issueCount: '123',
-          stars: '456',
-          links: 'Links',
-        },
-      ];
+    useEffect(() => {
+        async function lessonData() {
+            const response = await fetch("/lessons", {
+                method: "GET", headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            const data = await response.json();
+
+            setLessons(data);
+        }
+
+        lessonData();
+    }, [])
+
     return (
         <>
             <Grid>
-                <Row>
-                    <LessonsTable headers={headers} rows={rows} />
-                </Row>
+                    {lessons === null ?
+                        <DataTableSkeleton
+                            columnCount={headers.length + 1}
+                            rowCount={4}
+                            headers={headers}
+                        /> :
+                        <LessonsTable headers={headers} rows={lessons} />
+                    }
             </Grid>
         </>
     )
