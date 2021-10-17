@@ -1,8 +1,14 @@
 import React from 'react'
 import { Header as HeaderBase, HeaderName, HeaderNavigation, HeaderMenuItem, HeaderContainer, HeaderGlobalBar, HeaderGlobalAction } from 'carbon-components-react'
 import useAuth from '../../context/AuthContext'
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { Logout32 } from '@carbon/icons-react';
+import styled from 'styled-components';
+
+const StyledLink = styled(Link)`
+    text-decoration: none;
+    color: aliceblue;
+`
 
 export default function Header() {
     const { logout, authed } = useAuth();
@@ -34,8 +40,8 @@ export default function Header() {
                     <>
                         <HeaderNavigation>
                             <HeaderMenuItem>Profile</HeaderMenuItem>
-                            <HeaderMenuItem>Lessons</HeaderMenuItem>
                             <HeaderMenuItem>Students List</HeaderMenuItem>
+                            <HeaderMenuItem><StyledLink to="/main/lessons">Lessons</StyledLink></HeaderMenuItem>
                         </HeaderNavigation>
                         <HeaderGlobalBar>
                             <HeaderGlobalAction aria-label="logout" onClick={handleLogout} >
