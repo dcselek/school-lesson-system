@@ -7,7 +7,6 @@ export const db = factory({
     user: {
         id: primaryKey(datatype.uuid),
         firstName: name.firstName,
-        // firstName: name.firstName,
-        // lastName: name.lastName
+        lastName: name.lastName
     }
 })
