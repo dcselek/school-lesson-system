@@ -1,4 +1,7 @@
 import { rest } from 'msw'
+import { db } from '../db'
+import { seedData } from '../seeds/seeds'
+seedData();
 
 export const handlers = [
   rest.post('/login', (req, res, ctx) => {
@@ -56,5 +59,10 @@ export const handlers = [
         ]
       )
     )
+  }),
+  rest.get("/user", (req, res, ctx) => {
+    db.user.create()
+    const user = db.user.getAll()
+    return res(ctx.json(user));
   })
 ]
