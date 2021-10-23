@@ -42,7 +42,7 @@ export default function Header({ Content }) {
                         <>
                             <HeaderNavigation aria-label="DCS Header Navigation">
                                 <HeaderMenuItem>Profile</HeaderMenuItem>
-                                <HeaderMenuItem>Students List</HeaderMenuItem>
+                                <HeaderMenuItem><StyledLink to="/main/students">Students</StyledLink></HeaderMenuItem>
                                 <HeaderMenuItem><StyledLink to="/main/lessons">Lessons</StyledLink></HeaderMenuItem>
                             </HeaderNavigation>
                             <HeaderGlobalBar>

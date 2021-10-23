@@ -7,6 +7,7 @@ import MainPage from './pages/MainPage';
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/login/ProtectedRoute'
 import LessonsListPage from './pages/LessonsListPage';
+import StudentsListPage from './pages/StudentsListPage';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
               <Route exact path="/" children={<LoginPage />} />
               <ProtectedRoute exact path="/main" children={<MainPage />} />
               <Route exact path="/main/lessons" children={<LessonsListPage />} />
+              <Route exact path="/main/students" children={<StudentsListPage />} />
             </Switch>
           </Content>
         } />
