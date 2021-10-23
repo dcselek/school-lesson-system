@@ -12,14 +12,15 @@ function App() {
   return (
     <AuthProvider>
       <Router>
-        <Header />
-        <Content>
-          <Switch>
-            <Route exact path="/" children={<LoginPage />} />
-            <ProtectedRoute exact path="/main" children={<MainPage />} />
-            <Route exact path="/main/lessons" children={<LessonsListPage />} />
-          </Switch>
-        </Content>
+        <Header Content={
+          <Content>
+            <Switch>
+              <Route exact path="/" children={<LoginPage />} />
+              <ProtectedRoute exact path="/main" children={<MainPage />} />
+              <Route exact path="/main/lessons" children={<LessonsListPage />} />
+            </Switch>
+          </Content>
+        } />
       </Router>
     </AuthProvider>
   );
