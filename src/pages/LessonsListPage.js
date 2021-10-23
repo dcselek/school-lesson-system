@@ -43,8 +43,8 @@ export default function LessonsListPage() {
     return (
         <>
             <Grid>
-                <Row>
-                    <Column lg={2} />
+                <Row style={{ marginTop: "30px" }}>
+                    <Column lg={1} />
                     <Column>
                         {lessons === null ?
                             <DataTableSkeleton
