@@ -1,9 +1,9 @@
 import { Grid, DataTableSkeleton, Row, Column } from 'carbon-components-react'
 import React, { useState, useEffect } from 'react'
-import LessonsTable from '../components/tables/LessonsTable';
+import StudentsTable from '../components/tables/StudentsTable'
 
-export default function LessonsListPage() {
-    const [lessons, setLessons] = useState(null);
+export default function StudentsListPage() {
+    const [students, setStudents] = useState(null);
 
     const headers = [
         {
@@ -11,22 +11,18 @@ export default function LessonsListPage() {
             header: 'ID',
         },
         {
-            key: 'lessonCode',
-            header: 'Lesson Code',
+            key: 'firstName',
+            header: 'First Name',
         },
         {
-            key: 'name',
-            header: 'Name',
-        },
-        {
-            key: 'value',
-            header: 'Member',
+            key: 'lastName',
+            header: 'Last Name',
         }
     ];
 
     useEffect(() => {
-        async function lessonData() {
-            const response = await fetch("/lessons", {
+        async function studentData() {
+            const response = await fetch("/user", {
                 method: "GET", headers: {
                     'Content-Type': 'application/json'
                 }
@@ -34,10 +30,10 @@ export default function LessonsListPage() {
 
             const data = await response.json();
 
-            setLessons(data);
+            setStudents(data);
         }
 
-        lessonData();
+        studentData();
     }, [])
 
     return (
@@ -46,13 +42,13 @@ export default function LessonsListPage() {
                 <Row style={{ marginTop: "30px" }}>
                     <Column lg={1} />
                     <Column>
-                        {lessons === null ?
+                        {students === null ?
                             <DataTableSkeleton
                                 columnCount={headers.length + 1}
                                 rowCount={4}
                                 headers={headers}
                             /> :
-                            <LessonsTable headers={headers} rows={lessons} />
+                            <StudentsTable headers={headers} rows={students} />
                         }
                     </Column>
                 </Row>
