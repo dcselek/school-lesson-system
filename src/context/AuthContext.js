@@ -4,8 +4,10 @@ const authContext = React.createContext();
 
 function useAuth() {
     const [UserInfoAuth, setUserInfoAuth] = useState(null);
+    const [authed, setAuthed] = useState(false);
     return {
         UserInfoAuth,
+        authed,
         setUserInfoAuth,
         async login() {
             const response = await fetch("/login", {
@@ -17,16 +19,18 @@ function useAuth() {
             const data = await response.json();
 
             await localStorage.setItem("user", JSON.stringify(data));
+            setAuthed(true);
         },
         isAuth() {
-            if(JSON.parse(localStorage.getItem("user")).id){
+            if(JSON.parse(localStorage.getItem("user"))?.id){
                 return true;
             }else{
                 return false;
             }
         },
         logout() {
-            localStorage.clear();    
+            localStorage.clear();
+            setAuthed(false);    
         }
     }
 }

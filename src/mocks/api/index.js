@@ -1,4 +1,7 @@
 import { rest } from 'msw'
+import { db } from '../db'
+import { seedData } from '../seeds/seeds'
+seedData();
 
 export const handlers = [
   rest.post('/login', (req, res, ctx) => {
@@ -24,5 +27,42 @@ export const handlers = [
     return res(
       ctx.status(403)
     )
+  }),
+  rest.get("/lessons", (req, res, ctx) => {
+    return res(
+      ctx.json(
+        [
+          {
+            id: 1,
+            lessonCode: "BTO331",
+            name: "Bilgisayar Ağları",
+            value: 43,
+          },
+          {
+            id: 2,
+            lessonCode: "BTO330",
+            name: "Bilgisayar Donanımları",
+            value: 15,
+          },
+          {
+            id: 3,
+            lessonCode: "BTO365",
+            name: "Veri Güvenliği",
+            value: 43,
+          },
+          {
+            id: 4,
+            lessonCode: "BTO355",
+            name: "Web Tabanlı Programlama",
+            value: 21,
+          }
+        ]
+      )
+    )
+  }),
+  rest.get("/user", (req, res, ctx) => {
+    db.user.create()
+    const user = db.user.getAll()
+    return res(ctx.json(user));
   })
 ]
