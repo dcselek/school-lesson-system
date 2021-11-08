@@ -3,23 +3,26 @@ import { db } from '../db'
 import { seedData } from '../seeds/seeds'
 seedData();
 
+const teacherToken = "f79e82e8-c34a-4dc7-a49e-9fadc0979fd1"
+
 export const handlers = [
   rest.post('/login', (req, res, ctx) => {
-    const { username, password } = req.body
+    const { username } = req.body
 
     return res(
       ctx.json({
-        id: 'f79e82e8-c34a-4dc7-a49e-9fadc0979fda',
+        id: username === "teacher" ? teacherToken : "f79e82e8-c34a-4dc7-a49e-9fadc0979fda" ,
         username,
-        password,
       })
     )
   }),
   rest.get("/me", (req, res, ctx) => {
-    if (req.headers.get('Authorization')) {
+    const token = req.headers.get('Authorization')
+    if (token) {
       return res(
         ctx.json({
           username: "can",
+          type: token === teacherToken ? "teacher" : "student",
           credit: "170",
         })
       )
