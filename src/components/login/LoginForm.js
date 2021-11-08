@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
 import useAuth from '../../context/AuthContext'
 import { FormGroup, TextInput } from 'carbon-components-react'
@@ -13,12 +13,13 @@ const Login = styled(FormGroup)`
     padding: 20px;
 `
 export default function LoginForm() {
+    const [UserInfoAuth, setUserInfoAuth] = useState(null);
     const history = useHistory();
     const location = useLocation();
-    const { login, UserInfoAuth, setUserInfoAuth, isAuth } = useAuth();
+    const { login, isAuth } = useAuth();
     const { from } = location.state || { from: { pathname: "/main" } }
     async function handleLogin() {
-        await login();
+        await login(UserInfoAuth);
         isAuth() === true ? history.replace(from) : alert("token yok!");
     };
 
