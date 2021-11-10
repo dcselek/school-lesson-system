@@ -5,10 +5,13 @@ const authContext = React.createContext();
 function useAuth() {
     const [authToken, setAuthToken] = useState("");
     const [authed, setAuthed] = useState(false);
+    const [userType, setUserType] = useState("");
     return {
         authed,
         setAuthToken,
         authToken,
+        userType,
+        setUserType,
         async login(userInfo) {
             const response = await fetch("/login", {
                 method: "POST", headers: {
@@ -32,6 +35,18 @@ function useAuth() {
         logout() {
             localStorage.clear();
             setAuthed(false);    
+        },
+        async userTypeHandler() {
+            const response = await fetch("/me", {
+                method: "GET", headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': authToken
+                }
+            });
+
+            const data = await response.json();
+
+            setUserType(data.type)
         }
     }
 }

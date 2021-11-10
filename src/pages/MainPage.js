@@ -5,19 +5,10 @@ import LessonChart from '../components/charts/LessonChart';
 import useAuth from '../context/AuthContext'
 
 export default function MainPage() {
-    const { authToken } = useAuth();
+    const { userTypeHandler } = useAuth();
     useEffect(() => {
-        function authMe() {
-            fetch("/me", {
-                method: "GET", headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': authToken
-                }
-            })
-        }
-        
-        authMe();
-    }, [])
+        userTypeHandler()
+    })
 
     return (
         <>
