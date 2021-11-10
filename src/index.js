@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { AuthProvider } from './context/AuthContext';
 
 if (process.env.NODE_ENV === 'development') {
   const { worker } = require('./mocks/browser')
@@ -11,7 +12,9 @@ if (process.env.NODE_ENV === 'development') {
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <AuthProvider>
+      <App />
+    </AuthProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
