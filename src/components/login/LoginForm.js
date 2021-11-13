@@ -38,7 +38,7 @@ export default function LoginForm() {
                     onChange={e => setUserInfoAuth({ ...UserInfoAuth, password: e.target.value })}
                 />
             </Login>
-            <MainButton kind="danger" onClick={handleLogin} label="Login" />
+            <MainButton id="login-button" kind="danger" onClick={handleLogin} label="Login" />
         </LoginFormContainer>
     )
 }
