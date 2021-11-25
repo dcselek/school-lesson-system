@@ -23,18 +23,18 @@ function useAuth() {
 
             await localStorage.setItem("user", JSON.stringify(data));
             await setAuthToken(data.id);
-            setAuthed(true);
         },
         isAuth() {
-            if(JSON.parse(localStorage.getItem("user"))?.id){
+            if (JSON.parse(localStorage.getItem("user"))?.id) {
+                setAuthed(true);
                 return true;
-            }else{
+            } else {
                 return false;
             }
         },
         logout() {
             localStorage.clear();
-            setAuthed(false);    
+            setAuthed(false);
         },
         async userTypeHandler() {
             const response = await fetch("/me", {
