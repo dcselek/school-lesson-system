@@ -5,9 +5,10 @@ import LessonChart from '../components/charts/LessonChart';
 import useAuth from '../context/AuthContext'
 
 export default function MainPage() {
-    const { userTypeHandler } = useAuth();
+    const { userTypeHandler, getUserTypeToLocal } = useAuth();
     useEffect(() => {
-        userTypeHandler()
+        userTypeHandler();
+        getUserTypeToLocal();
     })
 
     return (
