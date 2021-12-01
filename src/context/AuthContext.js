@@ -36,10 +36,6 @@ function useAuth() {
             localStorage.clear();
             setAuthed(false);
         },
-        async getUserTypeToLocal() {
-            const userTypeData = await JSON.parse(localStorage.getItem("user-info")).type
-            setUserType(userTypeData);
-        },
         async userTypeHandler() {
             const response = await fetch("/me", {
                 method: "GET", headers: {
@@ -48,10 +44,14 @@ function useAuth() {
                 }
             });
 
-            const data = await response.json();
+            const status = await response.status
 
-            await localStorage.setItem("user-info", JSON.stringify(data));
-            setUserType(data.type)
+            if (status != 403) {
+                const data = await response.json();
+                await localStorage.setItem("user-info", JSON.stringify(data));
+            }
+            const userTypeData = await JSON.parse(localStorage.getItem("user-info"))
+            setUserType(userTypeData.type);
         }
     }
 }
