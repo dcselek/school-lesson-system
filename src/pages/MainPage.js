@@ -7,7 +7,7 @@ import useAuth from '../context/AuthContext'
 export default function MainPage() {
     const { userTypeHandler } = useAuth();
     useEffect(() => {
-        userTypeHandler()
+        userTypeHandler();
     })
 
     return (
