@@ -23,18 +23,18 @@ function useAuth() {
 
             await localStorage.setItem("user", JSON.stringify(data));
             await setAuthToken(data.id);
-            setAuthed(true);
         },
         isAuth() {
-            if(JSON.parse(localStorage.getItem("user"))?.id){
+            if (JSON.parse(localStorage.getItem("user"))?.id) {
+                setAuthed(true);
                 return true;
-            }else{
+            } else {
                 return false;
             }
         },
         logout() {
             localStorage.clear();
-            setAuthed(false);    
+            setAuthed(false);
         },
         async userTypeHandler() {
             const response = await fetch("/me", {
@@ -44,9 +44,14 @@ function useAuth() {
                 }
             });
 
-            const data = await response.json();
+            const status = await response.status
 
-            setUserType(data.type)
+            if (status != 403) {
+                const data = await response.json();
+                await localStorage.setItem("user-info", JSON.stringify(data));
+            }
+            const userTypeData = await JSON.parse(localStorage.getItem("user-info"))
+            setUserType(userTypeData.type);
         }
     }
 }

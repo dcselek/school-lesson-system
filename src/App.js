@@ -10,10 +10,10 @@ import StudentsListPage from './pages/StudentsListPage';
 import useAuth from './context/AuthContext'
 
 function App() {
-  const { userType } = useAuth();
+  const { userType, authed } = useAuth();
   return (
       <Router>
-        <Header userType={userType} Content={
+        <Header authed={authed} userType={userType} Content={
           <Content>
             <Switch>
               <Route exact path="/" children={<LoginPage />} />
