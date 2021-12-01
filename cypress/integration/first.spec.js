@@ -4,4 +4,6 @@ it('login teacher user', () => {
     cy.get("#username").type("teacher")
     cy.get("#login-button").click();
     cy.get("#students-nav-button").should("be.visible")
+    cy.reload()
+    cy.get("#students-nav-button").should("be.visible")
   });
