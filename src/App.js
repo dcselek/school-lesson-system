@@ -4,16 +4,16 @@ import Header from './components/header/Header';
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom'
 import LoginPage from './pages/loginPage';
 import MainPage from './pages/MainPage';
-import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/login/ProtectedRoute'
 import LessonsListPage from './pages/LessonsListPage';
 import StudentsListPage from './pages/StudentsListPage';
+import useAuth from './context/AuthContext'
 
 function App() {
+  const { userType, authed } = useAuth();
   return (
-    <AuthProvider>
       <Router>
-        <Header Content={
+        <Header authed={authed} userType={userType} Content={
           <Content>
             <Switch>
               <Route exact path="/" children={<LoginPage />} />
@@ -24,7 +24,6 @@ function App() {
           </Content>
         } />
       </Router>
-    </AuthProvider>
   );
 }
 

@@ -11,8 +11,8 @@ const StyledLink = styled(Link)`
     color: aliceblue;
 `
 
-export default function Header({ Content }) {
-    const { logout, authed } = useAuth();
+export default function Header({ Content, userType, authed }) {
+    const { logout } = useAuth();
     const history = useHistory();
 
     async function handleLogout() {
@@ -38,12 +38,16 @@ export default function Header({ Content }) {
                     <HeaderName href="#" prefix="DCS">
                         School System
                     </HeaderName>
-                    {authed &&
+                    {authed === true &&
                         <>
                             <HeaderNavigation aria-label="DCS Header Navigation">
                                 <HeaderMenuItem>Profile</HeaderMenuItem>
-                                <HeaderMenuItem><StyledLink to="/main/students">Students</StyledLink></HeaderMenuItem>
-                                <HeaderMenuItem><StyledLink to="/main/lessons">Lessons</StyledLink></HeaderMenuItem>
+                                {userType === "teacher" &&
+                                    <>
+                                        <HeaderMenuItem id="students-nav-button"><StyledLink to="/main/students">Students</StyledLink></HeaderMenuItem>
+                                        <HeaderMenuItem><StyledLink to="/main/lessons">Lessons</StyledLink></HeaderMenuItem>
+                                    </>
+                                }
                             </HeaderNavigation>
                             <HeaderGlobalBar>
                                 <HeaderGlobalAction aria-label="logout" onClick={handleLogout} >
