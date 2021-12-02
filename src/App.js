@@ -8,9 +8,14 @@ import ProtectedRoute from './components/login/ProtectedRoute'
 import LessonsListPage from './pages/LessonsListPage';
 import StudentsListPage from './pages/StudentsListPage';
 import useAuth from './context/AuthContext'
+import { useEffect } from 'react';
 
 function App() {
-  const { userType, authed } = useAuth();
+  const { userType, authed, logout } = useAuth();
+
+  useEffect(() => {
+    logout();
+  },[])
   return (
       <Router>
         <Header authed={authed} userType={userType} Content={
@@ -18,8 +23,8 @@ function App() {
             <Switch>
               <Route exact path="/" children={<LoginPage />} />
               <ProtectedRoute exact path="/main" children={<MainPage />} />
-              <Route exact path="/main/lessons" children={<LessonsListPage />} />
-              <Route exact path="/main/students" children={<StudentsListPage />} />
+              <Route path="/main/lessons" children={<LessonsListPage />} />
+              <Route path="/main/students" children={<StudentsListPage />} />
             </Switch>
           </Content>
         } />
