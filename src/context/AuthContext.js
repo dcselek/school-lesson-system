@@ -37,6 +37,9 @@ function useAuth() {
             setAuthed(false);
         },
         async userTypeHandler() {
+            const userId = await JSON.parse(localStorage.getItem("user"))
+            setAuthToken(userId.id);
+
             const response = await fetch("/me", {
                 method: "GET", headers: {
                     'Content-Type': 'application/json',
@@ -44,14 +47,8 @@ function useAuth() {
                 }
             });
 
-            const status = await response.status
-
-            if (status != 403) {
-                const data = await response.json();
-                await localStorage.setItem("user-info", JSON.stringify(data));
-            }
-            const userTypeData = await JSON.parse(localStorage.getItem("user-info"))
-            setUserType(userTypeData.type);
+            const data = await response.json();
+            setUserType(data.type);
         }
     }
 }
