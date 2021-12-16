@@ -12,6 +12,7 @@ import {
     TableCell,
     TableExpandedRow,
 } from 'carbon-components-react'
+import PropTypes from 'prop-types'
 
 export default function StudentsTable({ rows, headers }) {
     return (
@@ -56,4 +57,9 @@ export default function StudentsTable({ rows, headers }) {
             )}
         />
     )
+}
+
+StudentsTable.propTypes = {
+    rows: PropTypes.object,
+    header: PropTypes.object
 }

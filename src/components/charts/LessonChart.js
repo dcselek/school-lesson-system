@@ -37,13 +37,13 @@ export default function LessonChart() {
         "height": "400px",
         "width": "500px"
     }
-    
+
     return (
         <>
-         <SimpleBarChart
-            data={data}
-            options={options}
-          />   
+            <SimpleBarChart
+                data={data}
+                options={options}
+            />
         </>
     )
 }
