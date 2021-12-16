@@ -2,7 +2,7 @@ import React from 'react'
 import { Header as HeaderBase, HeaderName, HeaderNavigation, HeaderMenuItem, HeaderContainer, HeaderGlobalBar, HeaderGlobalAction, SideNav, SideNavLink, SideNavItems } from 'carbon-components-react'
 import useAuth from '../../context/AuthContext'
 import { useHistory, Link } from 'react-router-dom';
-import { Logout32 } from '@carbon/icons-react';
+import { Logout20 } from '@carbon/icons-react';
 import styled from 'styled-components';
 import { DotMark32 } from '@carbon/icons-react';
 import PropTypes from "prop-types"
@@ -45,14 +45,14 @@ export default function Header({ Content, userType, authed }) {
                                 <HeaderMenuItem>Profile</HeaderMenuItem>
                                 {userType === "teacher" &&
                                     <>
-                                        <HeaderMenuItem id="students-nav-button"><StyledLink to="/main/students">Students</StyledLink></HeaderMenuItem>
-                                        <HeaderMenuItem><StyledLink to="/main/lessons">Lessons</StyledLink></HeaderMenuItem>
+                                        <HeaderMenuItem onClick={() => history.push("/main/students")} id="students-nav-button">Students</HeaderMenuItem>
+                                        <HeaderMenuItem onClick={() => history.push("/main/lessons")}>Lessons</HeaderMenuItem>
                                     </>
                                 }
                             </HeaderNavigation>
                             <HeaderGlobalBar>
                                 <HeaderGlobalAction aria-label="logout" onClick={handleLogout} >
-                                    <Logout32 />
+                                    <Logout20 />
                                 </HeaderGlobalAction>
                             </HeaderGlobalBar>
                             <SideNav color="    " aria-label="Side Navigation">
