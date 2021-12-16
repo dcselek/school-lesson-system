@@ -5,6 +5,7 @@ import { useHistory, Link } from 'react-router-dom';
 import { Logout32 } from '@carbon/icons-react';
 import styled from 'styled-components';
 import { DotMark32 } from '@carbon/icons-react';
+import PropTypes from "prop-types"
 
 const StyledLink = styled(Link)`
     text-decoration: none;
@@ -68,4 +69,10 @@ export default function Header({ Content, userType, authed }) {
             </>
         )} />
     )
+}
+
+Header.propTypes = {
+    authed: PropTypes.bool,
+    userType: PropTypes.string,
+    Content: PropTypes.element
 }

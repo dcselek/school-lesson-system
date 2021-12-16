@@ -15,20 +15,20 @@ function App() {
 
   useEffect(() => {
     logout();
-  },[])
+  }, [])
   return (
-      <Router>
-        <Header authed={authed} userType={userType} Content={
-          <Content>
-            <Switch>
-              <Route exact path="/" children={<LoginPage />} />
-              <ProtectedRoute exact path="/main" children={<MainPage />} />
-              <Route path="/main/lessons" children={<LessonsListPage />} />
-              <Route path="/main/students" children={<StudentsListPage />} />
-            </Switch>
-          </Content>
-        } />
-      </Router>
+    <Router>
+      <Header authed={authed} userType={userType} Content={
+        <Content>
+          <Switch>
+            <Route exact path="/" children={<LoginPage />} />
+            <ProtectedRoute exact path="/main" children={<MainPage />} />
+            <Route path="/main/lessons" children={<LessonsListPage />} />
+            <Route path="/main/students" children={<StudentsListPage />} />
+          </Switch>
+        </Content>
+      } />
+    </Router>
   );
 }
 
